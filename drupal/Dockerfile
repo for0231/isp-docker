@@ -40,10 +40,12 @@ RUN composer require \
   drupal/relaxed \
   drupal/restui \
   drupal/rules \
+  drupal/purge \
   drupal/search_api_solr \
   drupal/token \
   drupal/token_filter \
-  drupal/views_slideshow
+  drupal/views_slideshow \
+  drupal/varnish_purge
 
 RUN /etc/init.d/mysql start && \
   vendor/bin/drush si -y --account-pass=admin --db-url=mysql://root:@localhost/drupal
@@ -57,8 +59,7 @@ RUN echo "include \$app_root . '/' . \$site_path . '/settings.local.php';" >> si
 
 # Install varnish_purge
 RUN composer require \
-  drupal/purge \
-  drupal/varnish_purge
+
 RUN /etc/init.d/mysql start && \
   vendor/bin/drupal moi -y \
     varnish_purger
