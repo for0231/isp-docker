@@ -58,8 +58,6 @@ COPY settings.local.php sites/default/settings.local.php
 RUN echo "include \$app_root . '/' . \$site_path . '/settings.local.php';" >> sites/default/settings.php
 
 # Install varnish_purge
-RUN composer require \
-
 RUN /etc/init.d/mysql start && \
   vendor/bin/drupal moi -y \
     varnish_purger
