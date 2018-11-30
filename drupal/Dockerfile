@@ -24,7 +24,9 @@ RUN composer require \
   drupal/ajax_links_api \
   drupal/block_class \
   drupal/conditional_fields \
+  drupal/console \
   drupal/custom_formatters \
+  drush/drush \
   drupal/facets \
   drupal/features \
   drupal/field_formatter_class \
@@ -42,6 +44,9 @@ RUN composer require \
   drupal/token \
   drupal/token_filter \
   drupal/views_slideshow
+
+RUN /etc/init.d/mysql start && \
+  vendor/bin/drush si -y --account-pass=admin --db-url=mysql://root:@localhost/drupal
 
 # Enable memcache modules
 RUN /etc/init.d/mysql start && \
